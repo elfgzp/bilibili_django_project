@@ -102,5 +102,50 @@ def get_bilibili_captcha(request):
         )
 
 
-def api_live_bilibili_com(request):
-    pass
+def proxy(request, base_url, path):
+    try:
+        request_url = 'http://{}/'.format(base_url) + path
+        session = requests.Session()
+        session.headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Cookie': request.META.get('HTTP_SET_COOKIE'),
+            'User-Agent': request.META.get('HTTP_USER_AGENT'),
+            'Host': base_url,
+        }
+        response = ''
+        if request.method == 'GET':
+            payload = request.GET
+            response = session.get(request_url, params=payload)
+        if request.method == 'POST':
+            payload = request.POST
+            response = session.post(request_url, data=payload)
+
+        if response:
+            response = HttpResponse(
+                content=response.content,
+                content_type=response.headers['content-type'],
+                status=response.status_code,
+                reason=response.reason,
+                charset=response.encoding,
+            )
+
+    except Exception as e:
+        _logger.error(e)
+        return HttpResponse(
+            content=json.dumps('{}'),
+            content_type='application/json',
+            status=200,
+            charset='utf-8'
+        )
+    else:
+        return response
+
+
+def api_live_bilibili_com(request, path):
+    return proxy(request, 'api.live.bilibili.com', path)
+
+
+def live_bilibili_com(request, path):
+    return proxy(request, 'live.bilibili.com', path)
+
