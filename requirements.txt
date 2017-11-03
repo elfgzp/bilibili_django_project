@@ -1,0 +1,17 @@
+aiohttp==2.3.1
+async-timeout==2.0.0
+chardet==3.0.4
+Django==1.11.6
+multidict==3.3.0
+pytz==2017.2
+yarl==0.13.0
+beautifulsoup4==4.6.0
+bs4==0.0.1
+certifi==2017.7.27.1
+chardet==3.0.4
+idna==2.6
+olefile==0.44
+pyasn1==0.3.7
+requests==2.18.4
+rsa==3.4.2
+urllib3==1.22

@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from bilibili_danmu import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^get_bilibili_cookie', views.get_bilibili_cookie),
+    url(r'^get_bilibili_captcha', views.get_bilibili_captcha)
+
 ]
