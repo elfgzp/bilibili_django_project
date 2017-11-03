@@ -1,5 +1,6 @@
 import logging
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, render_to_response
 import json
 import time
 from threading import Thread
@@ -149,3 +150,14 @@ def api_live_bilibili_com(request, path):
 def live_bilibili_com(request, path):
     return proxy(request, 'live.bilibili.com', path)
 
+
+def api_bilibili_com(request, path):
+    return proxy(request, 'api.bilibili.com', path)
+
+
+def index(request):
+    return HttpResponseRedirect('/app/')
+
+
+def app(request):
+    return render(request, 'index.html', locals())
