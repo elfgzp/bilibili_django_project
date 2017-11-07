@@ -18,7 +18,7 @@ from django.utils import timezone
 import time
 
 
-class IntegerTimeField(models.Field):
+class IntegerTimeField(models.TimeField):
     description = 'Convert Integer to Datetime Field'
 
     def get_prep_value(self, value):
@@ -53,7 +53,6 @@ class Rooms(models.Model):
     name = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
         db_table = 'rooms'
 
 
@@ -62,17 +61,16 @@ class Ss234024(models.Model):
     time = IntegerTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'ss234024'
 
 
 class Tt234024(models.Model):
-    name = models.TextField(blank=True, null=True, verbose_name='B站ID')  # This field type is a guess.
-    comment = models.TextField(blank=True, null=True, verbose_name='弹幕')
-    time = IntegerTimeField(blank=True, null=True, verbose_name='时间')
+    uid = models.IntegerField(blank=True, null=True, verbose_name='B站UID', db_index=True)
+    name = models.TextField(blank=True, null=True, verbose_name='B站ID', db_index=True)  # This field type is a guess.
+    comment = models.TextField(blank=True, null=True, verbose_name='弹幕', db_index=True)
+    time = IntegerTimeField(blank=True, null=True, verbose_name='时间', db_index=True)
 
     class Meta:
-        managed = False
         db_table = 'tt234024'
         verbose_name = '弹幕统计'
         verbose_name_plural = '弹幕统计'

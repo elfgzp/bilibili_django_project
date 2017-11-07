@@ -3,7 +3,9 @@ import asyncio
 from bilibiliClient import bilibiliClient
 
 import logging
+
 logger = logging.getLogger('bili')
+
 
 class taskcreator():
     def __init__(self, lock, commentq, numq):
@@ -12,9 +14,8 @@ class taskcreator():
         self.numq = numq
         self.tasks = {}
 
-        cx = sqlite3.connect('bilbili.db', check_same_thread = False)
-        #cu = cx.cursor()
-        rooms = cx.execute('select * from rooms')
+        cx = sqlite3.connect('bilbili.db', check_same_thread=False)
+        rooms = cx.execute('SELECT * FROM rooms')
         self.urls = []
         for room in rooms:
             self.urls.append(room[1])
@@ -39,13 +40,13 @@ class taskcreator():
                         task1.cancel()
                     if task2.done() == False:
                         task2.cancel()
-                    print ('重新进入直播间 %s' % url)
+                    print('重新进入直播间 %s' % url)
                     logging.debug('reenter %s' % url)
                     danmuji = bilibiliClient(url, self.lock, self.commentq, self.numq)
                     task11 = asyncio.ensure_future(danmuji.connectServer())
                     task22 = asyncio.ensure_future(danmuji.HeartbeatLoop())
                     self.tasks[url] = [task11, task22]
-            print ('len: %s' % len(self.tasks))
+            print('len: %s' % len(self.tasks))
             logging.debug('len: %s' % len(self.tasks))
-            print ('now there is %s' % len(asyncio.Task.all_tasks()))
+            print('now there is %s' % len(asyncio.Task.all_tasks()))
             logging.debug('now there is %s' % len(asyncio.Task.all_tasks()))

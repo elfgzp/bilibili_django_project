@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'bilibili_danmu',
 ]
 
+MIGRATION_MODULES = {
+    'bilibili_danmu': 'bilibili_danmu.db_migrations',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,8 +77,12 @@ WSGI_APPLICATION = 'bilibili_django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, './bilibili_danmu_colloector/bilbili.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bilibili',
+        'USER': 'ubuntu',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': ''
     }
 }
 
@@ -113,7 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = '/static/'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'

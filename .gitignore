@@ -4,3 +4,5 @@
 *.pyc
 *.out
 *.log.*
+bilibili_danmu/migrations
+bilibili_danmu/db_migrations

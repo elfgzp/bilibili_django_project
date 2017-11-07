@@ -3,7 +3,6 @@ import sqlite3
 import threading
 import time
 import copy
-
 import logging
 logger = logging.getLogger('bili')
 
