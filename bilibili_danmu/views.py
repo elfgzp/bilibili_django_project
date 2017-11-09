@@ -21,7 +21,7 @@ def clear_session_cache():
         {session_key: bilibili_session
          for session_key, bilibili_session in
          bilibili_login_session_cache
-         if bilibili_login_session_cache['time'] - time.time() >= 15}
+         if bilibili_login_session_cache['time'] - time.time() >= 60}
     time.sleep(15)
 
 
