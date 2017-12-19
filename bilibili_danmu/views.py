@@ -78,7 +78,7 @@ def get_bilibili_captcha(request):
             timestamp = int(time.time() * 1000)
             token_url = 'http://passport.bilibili.com/login?act=getkey'
             getKeyRes = bilibili_session.get(token_url)
-            captcha_url = 'https://passport.bilibili.com/captcha.gif?r={}&type=login'.format(str(timestamp))
+            captcha_url = 'https://passport.bilibili.com/captcha?r={}&type=login'.format(str(timestamp))
             response = bilibili_session.get(captcha_url)
             bilibili_session.headers['token'] = getKeyRes.content.decode('utf-8')
             base64_img = base64.b64encode(response.content)
