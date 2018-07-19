@@ -45,7 +45,7 @@ class bilibiliClient():
                     server = root.getElementsByTagName('server')
                     self._ChatHost = server[0].firstChild.data
         except:
-            return
+            pass
 
 
         reader, writer = await asyncio.open_connection(self._ChatHost, self._ChatPort)
