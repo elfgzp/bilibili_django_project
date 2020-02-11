@@ -1,7 +1,7 @@
 aiohttp==2.3.1
 async-timeout==2.0.0
 chardet==3.0.4
-Django==1.11.6
+Django==1.11.28
 multidict==3.3.0
 pytz==2017.2
 yarl==0.13.0
