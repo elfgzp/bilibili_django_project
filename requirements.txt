@@ -13,5 +13,5 @@ idna==2.6
 olefile==0.44
 pyasn1==0.3.7
 requests==2.18.4
-rsa==3.4.2
+rsa==4.7
 urllib3==1.22
