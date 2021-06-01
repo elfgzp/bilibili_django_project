@@ -14,4 +14,4 @@ olefile==0.44
 pyasn1==0.3.7
 requests==2.18.4
 rsa==3.4.2
-urllib3==1.22
+urllib3==1.26.5
